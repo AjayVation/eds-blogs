@@ -141,7 +141,6 @@ export default async function decorate(block) {
 
   const navData = await getCategories() || [];
   const navSections = nav.querySelector('.nav-sections');
-  console.log('navSections', navSections);
 
   if (navSections) {
     // Clear existing nav items
@@ -202,14 +201,16 @@ export default async function decorate(block) {
 
     const searchInput = search.querySelector('#global-search');
     const searchResults = search.querySelector('#search-results');
-    const renderSearchResults = () => {
+    const renderSearchResults = async () => {
       const query = searchInput.value.trim().toLowerCase();
       searchResults.replaceChildren();
       if (!query) {
         searchResults.classList.add('hidden');
         return;
       }
-
+      const response = await fetch('/query-index.json?limit=1000');
+      const json = await response.json();
+      console.log('queryIndexjson', json);
       const matches = (window.blogsData || []).filter((blog) => {
         const searchableText = [blog.title, blog.description, blog.author, blog.category, blog.tags]
           .join(' ')

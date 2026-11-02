@@ -6,6 +6,7 @@ export default async function decorate(block) {
   const blogsList = [...block.children];
   const blogsData = await getBlogsData() || [];
   const categoriesData = await getCategories() || [];
+  console.log('blogsList', blogsList);
   console.log('categoriesData', categoriesData);
   blogsList.forEach((blog, index) => {
     const cols = [...blog.children];
@@ -29,7 +30,7 @@ export default async function decorate(block) {
       authorDate.appendChild(dateEl);
     } // date
     if (cols[4]) authorDate.appendChild(extractWraperDiv(cols[4], 'p', 'blog__author')); // author
-    if (cols[5]) bannerWrapper.appendChild(extractWraperDiv(cols[5], 'p', 'blog__category')); // category
+    if (cols[5]) contentWrapper?.appendChild(extractWraperDiv(cols[5], 'p', 'blog__category')); // category
 
     // Clear blog row
     blog.innerHTML = '';

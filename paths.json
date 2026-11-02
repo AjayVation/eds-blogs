@@ -1,8 +1,9 @@
 {
   "mappings": {
-    "/": "/content/eds-universal-editor-practice/index",
-    "/blogs": "/content/eds-universal-editor-practice/index",
-    "/fragments/categories": "/content/eds-universal-editor-practice/index"
+    "/": "/content/eds-universal-editor-practice/en/index",
+    "/en/": "/content/eds-universal-editor-practice/en/",
+    "/hi/": "/content/eds-universal-editor-practice/hi_in/",
+    "/blogs": "/content/eds-universal-editor-practice/en/blogs"
   },
-  "includes": ["/", "/master"]
+  "includes": ["/content/eds-universal-editor-practice/"]
 }
