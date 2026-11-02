@@ -1,5 +1,8 @@
 mountpoints:
   /:
-    url: "https://author-p127270-e1713202.adobeaemcloud.com/bin/franklin.delivery/AjayVation/eds-blogs/main"
-    type: "markup"
-    suffix: ".html"
+    url: 'https://author-p127270-e1713202.adobeaemcloud.com/bin/franklin.delivery/AjayVation/eds-blogs/main'
+    type: 'markup'
+    suffix: '.html'
+permissions:
+  config_admin:
+    - 'DD42227E687733850A495CDC@://adobe.com'
