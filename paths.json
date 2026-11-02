@@ -1,9 +1,8 @@
 {
-  "mappings": {
-    "/": "/content/eds-universal-editor-practice/en/index",
-    "/en/": "/content/eds-universal-editor-practice/en/",
-    "/hi/": "/content/eds-universal-editor-practice/hi_in/",
-    "/blogs": "/content/eds-universal-editor-practice/en/blogs"
-  },
+  "mappings": [
+    "/content/eds-universal-editor-practice/:/",
+    "/content/eds-universal-editor-practice/configuration:/.helix/config.json",
+    "/content/eds-universal-editor-practice/metadata:/metadata.json"
+  ],
   "includes": ["/content/eds-universal-editor-practice/"]
 }
