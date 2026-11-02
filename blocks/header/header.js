@@ -111,10 +111,15 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 export default async function decorate(block) {
   window.blogsData = await getBlogsData();
 
+  // pick the language folder from the URL (/en/..., /hi_in/...)
+  const locale = window.location.pathname.split('/')[1];
+  const lang = ['en', 'hi_in'].includes(locale) ? locale : 'en';
+
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${lang}/nav`;
   const fragment = await loadFragment(navPath);
+  if (!fragment) return;
 
   // decorate nav DOM
   block.textContent = '';
@@ -129,14 +134,16 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  navBrand.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.href = '/';
-  });
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand) {
+    navBrand.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = `/${lang}/`;
+    });
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
   }
 
   const navData = await getCategories() || [];
@@ -164,7 +171,7 @@ export default async function decorate(block) {
         navData.forEach((category) => {
           const li = document.createElement('li');
           const a = document.createElement('a');
-          a.href = `/blogs?category=${category.slug}`;
+          a.href = `/${lang}/blogs?category=${category.slug}`;
           a.textContent = category.name;
           li.appendChild(a);
           mainUl.appendChild(li);
@@ -201,16 +208,13 @@ export default async function decorate(block) {
 
     const searchInput = search.querySelector('#global-search');
     const searchResults = search.querySelector('#search-results');
-    const renderSearchResults = async () => {
+    const renderSearchResults = () => {
       const query = searchInput.value.trim().toLowerCase();
       searchResults.replaceChildren();
       if (!query) {
         searchResults.classList.add('hidden');
         return;
       }
-      const response = await fetch('/query-index.json?limit=1000');
-      const json = await response.json();
-      console.log('queryIndexjson', json);
       const matches = (window.blogsData || []).filter((blog) => {
         const searchableText = [blog.title, blog.description, blog.author, blog.category, blog.tags]
           .join(' ')
@@ -220,7 +224,7 @@ export default async function decorate(block) {
 
       matches.forEach((blog) => {
         const result = document.createElement('a');
-        result.href = `/blogs/blog-detail?title=${blog.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, '-')}`;
+        result.href = `/${lang}/blogs/blog-detail?title=${blog.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, '-')}`;
         result.textContent = blog.title;
         searchResults.append(result);
       });
