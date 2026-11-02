@@ -4,5 +4,5 @@ Fix #<gh-issue-id>
 
 Test URLs:
 
-- Before: https://main--eds-blogs--ajaygouda.aem.live/
-- After: https://<branch>--eds-blogs--ajaygouda.aem.live/
+- Before: https://main--eds-blogs--AjayVation.aem.live/
+- After: https://<branch>--eds-blogs--AjayVation.aem.live/
