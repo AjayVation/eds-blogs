@@ -1,6 +1,6 @@
 {
-  "project": "eds-blogs",
-  "repo": "eds-blogs",
-  "owner": "AjayVation",
-  "branch": "main"
+  "paths": {
+    "mappings": ["/content/eds-universal-editor-practice/:/"],
+    "includes": ["/content/eds-universal-editor-practice/"]
+  }
 }
