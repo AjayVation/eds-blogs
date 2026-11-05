@@ -1,10 +1,10 @@
 mountpoints:
   /en/:
-    url: 'https://author-p127270-e1713202.adobeaemcloud.com/bin/franklin.delivery/AjayVation/eds-blogs/main'
+    url: 'https://adobeaemcloud.com'
     type: 'markup'
     suffix: '.html'
-  /hi_in/:
-    url: 'https://author-p127270-e1713202.adobeaemcloud.com/bin/franklin.delivery/AjayVation/eds-blogs/main'
+  /hi-in/:
+    url: 'https://adobeaemcloud.com'
     type: 'markup'
     suffix: '.html'
 permissions:
