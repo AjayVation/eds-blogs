@@ -1,3 +1,4 @@
+const lang = window.location.pathname.split('/')[1] || 'en';
 export function formatDate(dateString) {
   if (!dateString) return '';
 
@@ -67,7 +68,7 @@ export function setSession(key, value) {
 export async function getBlogsData() {
   if (window.blogsData) return window.blogsData;
 
-  const response = await fetch('/blogs.plain.html');
+  const response = await fetch(`/${lang}/blogs.plain.html`);
   const html = await response.text();
   const blogs = parsePlainHtmlToJson(html);
   return blogs;
@@ -76,7 +77,7 @@ export async function getBlogsData() {
 export async function getCategories() {
   if (window.categoriesData) return window.categoriesData;
 
-  const response = await fetch('/master.plain.html');
+  const response = await fetch(`/${lang}/master.plain.html`);
   const html = await response.text();
   const categories = parsePlainHtmlToJsonCategories(html);
   return categories;
